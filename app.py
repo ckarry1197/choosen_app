@@ -14,7 +14,7 @@ if page == "餐廳推薦":
         restaurants = choosen.restaurant_load()
         categories = list(restaurants.keys())
 
-        selected_category = st.selectbox("請選擇分類",categories)
+        selected_category = st.selectbox("請選擇分類",categories, index=0)
 
         if st.button("推薦我！", key="random"):
             restaurant = choosen.recommend_restaurant(restaurants, selected_category)
@@ -31,7 +31,7 @@ elif page == "預算推薦":
     st.header("根據預算推薦店家")
 
     categories = list(choosen_2.restaurants.keys())
-    selected_categories = st.multiselect("請選擇想吃的分類", categories)
+    selected_categories = st.multiselect("請選擇想吃的分類", categories, default=[categories[0]])
     budget = st.number_input("請輸入預算（元）", min_value=0, step=10)
 
     if st.button("找店家！", key="budget"):
